@@ -34,7 +34,7 @@ For example following functions have O(n) time complexity.
   
 -------------------------------------------------------------------------------------------------------------------------------
   
-3) O(nc): Time complexity of nested loops is equal to the number of times the innermost statement is executed. 
+3) O(n^c): Time complexity of nested loops is equal to the number of times the innermost statement is executed. 
 For example the following sample loops have O(n2) time complexity
 
   
@@ -69,7 +69,7 @@ For example Selection sort and Insertion Sort have O(n^2) time complexity.
    }
    
 For example Binary Search(refer iterative implementation) has O(Logn) time complexity. Let us see mathematically how it is O(Log n). 
-The series that we get in first loop is 1, c, c2, c3, … ck. If we put k equals to Logcn, we get cLogcn which is n.
+The series that we get in first loop is 1, c, c^2, c^3, … c^k. If we put k equals to Logn, we get c^Logn which is n.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -81,8 +81,8 @@ exponentially by a constant amount.
    { 
        // some O(1) expressions
    }
-   //Here fun is sqrt or cuberoot or any other constant root
-   for (int i = n; i > 1; i = fun(i)) 
+   //Here func is sqrt or cuberoot or any other constant root
+   for (int i = n; i > 1; i = func(i)) 
    { 
        // some O(1) expressions
    }
