@@ -1,0 +1,83 @@
+import java.util.*;
+public class Main
+{
+    static int input,n,top,x,i;
+    static int stack[]=new int[1000]
+    public static void main(String args[])
+    {
+       top=-1;
+       System.out.println("Enter size of stack: ");
+       Scanner in=new Scanner(System.in);
+       n=in.nextInt();
+       do
+       {
+           System.out.println("Stack operations using array");
+           System.out.println();
+           System.out.println("1.Push\n2.Pop\n3.Display\n4.Exit");
+           System.out.println("Enter an input: ");
+           input=in.nextInt();
+           switch(input)
+           {
+               case 1:
+                   push();
+                   display();
+                   break;
+               case 2:
+                   pop();
+                   display();
+                   break;
+               case 3:
+                   display();
+                   break;
+               case 4:
+                   System.out.println("Exit");
+                   break;
+           }
+       }while(input!=4);
+    }
+    
+    public static void push()
+    {
+        if(top>=n-1)
+        {
+            System.out.println("Stack is overflow");
+        }
+        else
+        {
+            System.out.println("Enter a value to be pushed");
+            Scanner in=new Scanner(System.in);
+            int x=in.nextInt();
+            top++;
+            stack[top]=x;
+        }
+    }
+    
+    public static void pop()
+    {
+        if(top<=-1)
+        {
+            System.out.println("Stack is underflow");
+        }
+        else
+        {
+            System.out.println("The popped elements is: " +stack[top]);
+            top--;
+        }
+    }
+    
+    public static void display()
+    {
+        if(top>=0)
+        {
+            System.out.println("Elements in Stack are: ");
+            for(i=top;i>=0:i--)
+            {
+                System.out.println(stack[i]);
+            }
+        }
+        else
+        {
+            System.out.println("The Stack is empty");
+        }
+    }
+}
