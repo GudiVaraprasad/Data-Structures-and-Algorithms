@@ -2,7 +2,7 @@ import java.util.*;
 public class Main
 {
     static int input,n,top,x,i;
-    static int stack[]=new int[1000]
+    static int stack[]=new int[1000];
     public static void main(String args[])
     {
        top=-1;
@@ -70,7 +70,7 @@ public class Main
         if(top>=0)
         {
             System.out.println("Elements in Stack are: ");
-            for(i=top;i>=0:i--)
+            for(i=top;i>=0;i--)
             {
                 System.out.println(stack[i]);
             }
