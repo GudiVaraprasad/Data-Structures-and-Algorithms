@@ -1,0 +1,63 @@
+import java.util.*;
+public class Stack_Implementation
+{
+    int top;
+    int size;
+    int[] stack;
+    Stack_Implementation()
+    {
+        top=-1;
+        size=10;
+        stack=new int[size];
+    }
+    public boolean isEmpty()
+    {
+        return top==-1;
+    }
+    public boolean isFull()
+    {
+        return top==size-1;
+    }
+    public int push(int data)
+    {
+        if(isFull())
+        {
+            System.out.println("Stack is OverFlow");
+        }
+        return stack[++top]=data;
+    }
+     public int pop()
+    {
+        if(isEmpty())
+        {
+            System.out.println("Stack is UnderFlow");
+        }
+        return stack[top--];
+    }
+    public int Top()
+    {
+        return stack[top];
+    }
+    public void display()
+    {
+        for(int i:stack)
+        {
+            System.out.println();
+        }
+    }
+    
+    public static void main(String args)
+    {
+        Stack_Implementation obj=new Stack_Implementation();
+        obj.push(100);
+        obj.push(200);
+        obj.push(300);
+        obj.push(400);
+        System.out.println(obj.size);
+        System.out.println(obj.Top());
+        System.out.println(obj.pop());
+        System.out.println(obj.Top());
+        obj.display();
+    }
+
+}
