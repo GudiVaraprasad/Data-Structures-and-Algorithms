@@ -1,0 +1,97 @@
+import java.util.*;
+public class Main 
+{
+    static int i,front,rear,item,input,n;
+    static int[] queue=new int[1000];
+    
+    public static void main(String args[])
+    {
+        front=-1;
+        rear=-1;
+        System.out.println("Enter the size of queue: ");
+        Scanner in=new Scanner(System.in);
+        n=in.nextInt();
+        do
+        {
+            System.out.println("Queue operations using Arrays: ");
+            System.out.println();
+            System.out.println("1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
+            input=in.nextInt();
+            switch(input)
+           {
+               case 1:
+                   enqueue();
+                   break;
+               case 2:
+                   dequeue();
+                   break;
+               case 3:
+                   display();
+                   break;
+               case 4:
+                   System.out.println("Exit");
+                   break;
+           }
+       }while(input!=4);
+    }
+    
+        static void enqueue()
+        {
+            if(rear==n-1)
+            {
+                System.out.println("Queue is Overflow");
+            }
+            else if(front==-1 && rear==-1)
+            {
+                System.out.println("Enter a value to be inserted: ");
+                Scanner in=new Scanner(System.in);
+                item=in.nextInt();
+                front=rear=0;
+                queue[rear]=item;
+            }
+            else
+            {
+                System.out.println("Enter a value to be inserted: ");
+                Scanner in=new Scanner(System.in);
+                item=in.nextInt();
+                rear++;
+                queue[rear]=item;
+            }
+        }
+        
+         static void dequeue()
+        {
+            if(front<=-1)
+            {
+                System.out.println("Queue is Underflow");
+            }
+            else if(front==rear)
+            {
+                item=queue[front];
+                System.out.println("Deleted item is: " +item);
+                front=rear=-1;
+            }
+            else
+            {
+                item=queue[front];
+                 System.out.println("Deleted item is: " +item);
+                front++;
+            }
+        }
+        
+         static void display()
+        {
+            if(rear<=-1)
+            {
+                System.out.println("Queue is Underflow");
+            }
+            else
+            {
+                 System.out.println("Elements in queue are: ");
+                 for(int i=front;i<=rear;i++)
+                 {
+                     System.out.println(queue[i]);
+                 }
+            }
+        }
+}
