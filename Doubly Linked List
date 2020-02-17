@@ -1,0 +1,223 @@
+import java.util.*;
+public class DLLNode
+{
+    int value;
+    DLLNode prev;
+    DLLNode next;
+}
+public class Main
+{
+    public static void main(String args[])
+    dll list=new dll();
+    int ch;
+    do
+    {
+        System.out.println("\n1.Create a node \n2.Insert at Begining \n3.Insert at end \n4.Insert at middle \n5.Delete at Begining \n6.Delete at end \n7.Delete in middle \n8.Display \n9.Exit");
+        System.out.println("Enter a choice");
+        ch=in.nextInt();
+        switch(ch)
+        {
+            case 1:
+                list.create();
+                break;
+            case 2:
+                list.insert_begining();
+                break;
+            case 3:
+                list.insert_end();
+                break;
+            case 4:
+                list.insert_middle();
+                break;
+            case 5:
+                list.delete_begining();
+                break;
+            case 6:
+                list.delete_end();
+                break;
+            case 7:
+                list.delete_middle();
+                break;
+            case 8:
+                display();
+                break;
+            case 9:
+                System.out.println("Exit");
+                break;
+        }
+    }while(input!=9)
+}
+
+import java.util.*;
+public class dll
+{
+    static DLLNode head=null, tail=null;
+    static Scanner in=new Scanner(System.in);
+    
+    public static void create()
+    {
+        System.out.println("Enter the no. of nodes");
+        int num=in.nextInt();
+        for(int i=0;i<num;i++)
+        {
+            DLLNode newnode=new DLLNode();
+            System.out.println("Enter the value");
+            newnode.value=in.nextInt();
+            newnode.prev=null;
+            newnode.next=null;
+            
+            if(head==null)
+            {
+                head=tail=newnode;
+            }
+            else
+            {
+                tail.next=newnode;
+                newnode.prev=tail;
+                tail=newnode;
+            }
+        }
+    }
+    
+    public static void display()
+    {
+        if(head==null)
+        {
+            System.out.println("List is empty");
+        }
+        else
+        {
+            DLLNode temp=head;
+            while(temp!=null)
+            {
+                System.out.println(temp.value+" ");
+                temp=temp.next;
+            }
+        }
+    }
+    
+    public static void insert_begining()
+    {
+        DLLNode newnode=new DLLNode();
+            System.out.println("Enter the value to insert");
+            newnode.value=in.nextInt();
+            newnode.prev=null;
+            newnode.next=null;
+            
+            if(head==null)
+            {
+                head=tail=newnode;
+            }
+            else
+            {
+                newnode.next=head;
+                head.prev=newnode;
+                head=newnode;
+            }
+    }
+    
+    public static void insert_end()
+    {
+        DLLNode newnode=new DLLNode();
+            System.out.println("Enter the value to insert");
+            newnode.value=in.nextInt();
+            newnode.prev=null;
+            newnode.next=null;
+            
+            if(head==null)
+            {
+                head=tail=newnode;
+            }
+            else
+            {
+                tail.next=newnode;
+                newnode.prev=tail;
+                tail=newnode;
+            }
+    }
+    
+    public static void insert_middle()
+    {
+        int pos,count=0;
+        DLLNode newnode=new DLLNode();
+            System.out.println("Enter the position to insert");
+            pos=in.nextInt();
+            System.out.println("Enter the value to insert");
+            newnode.value=in.nextInt();
+            DLLNode temp=head;
+            while(temp.next!=null)
+            {
+                count++;
+                if(count==pos)
+                {
+                    break;
+                }
+                temp=temp.next;
+            }
+            newnode.next=temp.next;
+            temp.next.prev=newnode;
+            temp.next=newnode;
+            newnode.prev=temp;
+    }
+    
+    public static void delete_begining()
+    {
+       DLLNode temp=head;
+       if(head!=null)
+       {
+           temp=temp.next;
+           temp.prev=null;
+           head=temp;
+       }
+       else if(head==tail)
+       {
+           head=tail=null;
+       }
+       else
+       {
+           System.out.println("List is empty");
+       }
+    }
+    
+    public static void delete_end()
+    {
+        DLLNode temp=head;
+       if(head==tail)
+       {
+          head=tail=null;
+       }
+       else if(head!=tail)
+       {
+           while(temp.next!=null)
+            {
+                temp=temp.next;
+            }
+            tail=tail.prev;
+            tail.next=null;
+       }
+       else
+       {
+           System.out.println("List is empty");
+       }
+    }
+    
+    public static void delete_middle()
+    {
+        int pos,count=0;
+        DLLNode newnode=new DLLNode();
+            System.out.println("Enter the position to insert");
+            pos=in.nextInt();
+            DLLNode temp=head;
+            while(temp.next!=null)
+            {
+                count++;
+                if(count==pos)
+                {
+                    break;
+                }
+                temp=temp.next;
+            }
+            temp.next.next.prev=temp;
+            temp.next=temp.next.next;
+    }
+}
