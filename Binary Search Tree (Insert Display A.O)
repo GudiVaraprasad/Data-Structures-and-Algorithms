@@ -1,0 +1,74 @@
+import java.util.*;
+class Node 
+{
+    int data;
+    Node left;
+    Node right;
+}
+
+class BST
+{
+    public Node CreateNode(int k)
+    {
+        Node a=new Node();
+        a.data=k;
+        a.left=null;
+        a.right=null;
+        return a;
+    }
+    public Node insert(Node node,int val)
+    {
+        if(node==null)
+        {
+            return CreateNode(val);
+        }
+        if(val < node.data)
+        {
+            node.left=insert(node.left,val);
+        }
+        else if(val > node.data)
+        {
+            node.right=insert(node.right,val);
+        }
+        
+        return node;
+    }
+    public void Display(Node node)
+    {
+        if(node==null)
+        {
+            return;
+        }
+        Display(node.left);
+        System.out.print(node.data + " ");
+        Display(node.right);
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+       BST obj=new BST(); 
+       Node root = null;
+       root=obj.insert(root,80);
+       root=obj.insert(root,100);
+       root=obj.insert(root,20);
+       root=obj.insert(root,90);
+       root=obj.insert(root,12);
+       root=obj.insert(root,69);
+       root=obj.insert(root,48);
+       root=obj.insert(root,85);
+       root=obj.insert(root,105);
+       root=obj.insert(root,36);
+       root=obj.insert(root,58);
+       root=obj.insert(root,78);
+       root=obj.insert(root,40);
+       root=obj.insert(root,32);
+       root=obj.insert(root,9);
+       root=obj.insert(root,18);
+       System.out.println("Ascending order is: ");
+       obj.Display(root);
+       
+    }
+}
