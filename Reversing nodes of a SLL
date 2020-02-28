@@ -1,0 +1,82 @@
+import java.util.*;
+public class Main
+{
+ 
+	private Node head;
+ 
+	private static class Node 
+	{
+		private int value;
+		private Node next;
+ 
+		Node(int value) 
+		{
+			this.value = value;
+ 
+		}
+	}
+ 
+	public void addToTheLast(Node node)
+	{
+ 
+		if (head == null) 
+		{
+			head = node;
+		} else 
+		{
+			Node temp = head;
+			while (temp.next != null)
+				temp = temp.next;
+ 
+			temp.next = node;
+		}
+	}
+ 
+ 
+	public void printList(Node head) 
+	{
+		Node temp = head;
+		while (temp != null) 
+		{
+			System.out.format("%d ", temp.value);
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+
+	public static Node reverseLinkedList(Node currentNode)
+	{
+
+		Node previousNode=null;
+		Node nextNode;
+		while(currentNode!=null)
+		{
+			nextNode=currentNode.next;
+	
+			currentNode.next=previousNode;
+	
+			previousNode=currentNode;
+			currentNode=nextNode;
+		}
+		return previousNode;
+	}
+ 
+	public static void main(String[] args) 
+	{
+		Main obj = new Main();
+
+		Node head=new Node(10);
+		obj.addToTheLast(head);
+		obj.addToTheLast(new Node(20));
+		obj.addToTheLast(new Node(30));
+		obj.addToTheLast(new Node(40));
+ 
+		obj.printList(head);
+
+		Node reverseHead=reverseLinkedList(head);
+		System.out.println("After reversing");
+		obj.printList(reverseHead);
+ 
+	}
+ 
+}
