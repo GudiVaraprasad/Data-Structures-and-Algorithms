@@ -1,0 +1,55 @@
+// CORONA Virus Cases
+
+import java.util.*;
+public class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner in=new Scanner(System.in);
+        System.out.print("Enter no. of states: ");
+        int n=in.nextInt();
+        
+        String[] state=new String[n];
+        System.out.println("Enter the names of states: ");
+        for(int i=0;i<state.length;i++)
+        {
+            Scanner sc=new Scanner(System.in);
+            state[i]=sc.nextLine();
+        }
+        
+        int[] cases=new int[n]; 
+        System.out.println("Enter no. of cases in each state respectively : ");
+        for(int i=0;i<cases.length;i++)
+        {
+            cases[i]=in.nextInt();
+        }
+        
+        int temp=0;
+        String temp1="";
+        for(int i=0;i<cases.length;i++)
+        {
+            int min=i;
+            for(int j=i+1;j<n;j++)
+            {
+                if(cases[j]<=cases[min])
+                {
+                    min=j;
+                }
+            }
+            temp=cases[min];
+            cases[min]=cases[i];
+            cases[i]=temp;
+            
+            temp1=state[min];
+            state[min]=state[i];
+            state[i]=temp1;
+        }
+        
+        System.out.println("Selection Sort - Corona Virus reports : ");
+        for(int i=0;i<cases.length;i++)
+        {
+            System.out.println(state[i]+" - "+cases[i]);
+        }
+        
+    }
+}
