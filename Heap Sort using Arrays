@@ -1,0 +1,95 @@
+import java.util.*;
+import java.io.*;
+public class HeapSort
+{
+ 
+   public static void buildheap(int[] arr)
+   {
+       for(int i=(arr.length-1)/2; i>=0; i--)
+       {
+           heapify(arr,i,arr.length-1);
+           
+       }
+   }
+ 
+   public static void heapify(int[] arr, int i,int size)
+   { 
+      int left = 2*i+1;
+      int right = 2*i+2;
+      int max;
+      if(left <= size && arr[left] > arr[i])
+      {
+         max=left;
+      } 
+      else 
+      {
+         max=i;
+      }
+ 
+      if(right <= size && arr[right] > arr[max])
+      {
+         max=right;
+      }
+
+      if(max!=i) 
+      {
+         swap(arr,i, max);
+         heapify(arr, max,size);
+      }
+   }
+ 
+   public static void swap(int[] arr,int i, int j)
+   {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp; 
+   }
+ 
+   public static int[] heapSort(int[] arr) 
+   {
+     
+      buildheap(arr);
+      int heapsize=arr.length-1;
+      for(int i=heapsize; i>0; i--)
+      {
+         swap(arr,0, i);
+         heapsize--;
+         heapify(arr, 0,heapsize);
+      }
+      return arr;
+   }
+ 
+   public static void main(String[] args) 
+   {
+      Scanner in = new Scanner(System.in);
+      System.out.print("Enter the number of elements: ");
+      int n=in.nextInt();
+      int[] arr=new int[n];
+      System.out.println("Ente the array elements: ");
+      for(int i=0;i<arr.length;i++)
+      {
+          arr[i]=in.nextInt();
+      }
+      System.out.println();
+      System.out.println();
+      System.out.println("Before Heap Sort : ");
+      for(int i=0;i<arr.length;i++)
+      {
+          System.out.print(arr[i]+" ");
+      }
+      arr=heapSort(arr);
+      System.out.println();
+      System.out.println("After Heap Sort in increasing order : ");
+      for(int i=0;i<arr.length;i++)
+      {
+          System.out.print(arr[i]+" ");
+      }
+      System.out.println();
+      System.out.println();
+      System.out.println("After Heap Sort in decreasing order : ");
+      for(int i=arr.length-1;i>=0;i--)
+      {
+          System.out.print(arr[i]+" ");
+      }
+   }
+}
