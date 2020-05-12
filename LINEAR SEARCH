@@ -1,0 +1,36 @@
+import java.util.*;
+class Main
+{
+   public static void main(String args[])
+   {
+      int i, n, ele;
+      Scanner in = new Scanner(System.in);
+      System.out.print("Enter number of elements: ");
+      n = in.nextInt(); 
+      int[] array = new int[n]; 
+      System.out.println("Enter " + n + " integers");
+
+      for (i=0;i<array.length;i++)
+      {
+          array[i] = in.nextInt();
+      }
+      
+      System.out.println();
+      System.out.println(" LINEAR SEARCH ");
+      System.out.println("--------------------------------");
+
+      System.out.print("Enter the element you want to search: ");
+      ele = in.nextInt();
+
+      for (i=0;i<array.length;i++)
+      {
+         if (array[i] == ele) 
+         {
+           System.out.println(ele+" is present at "+i+" index in array. ");
+           break;
+         }
+      }
+      if (i==n)
+        System.out.println(ele + " doesn't exist in array.");
+   }
+}
