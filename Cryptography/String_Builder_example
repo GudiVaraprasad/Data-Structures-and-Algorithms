@@ -1,0 +1,14 @@
+import java.util.*;
+class String_Builder_example
+{
+    public static void main(String args[])
+    {
+        Scanner in=new Scanner(System.in);
+        System.out.print("Enter your String: ");
+        String s=in.nextLine();
+        System.out.println();
+        StringBuilder strb  = new StringBuilder(s);
+        
+        System.out.println("Your encoded Message is:  " +encr);
+    }
+}
