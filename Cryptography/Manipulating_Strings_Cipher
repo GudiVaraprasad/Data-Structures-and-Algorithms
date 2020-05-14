@@ -1,0 +1,20 @@
+import java.util.*;
+class Manipulating_Strings_Cipher
+{
+    public static void main(String args[])
+    {
+        Scanner in=new Scanner(System.in);
+        System.out.print("Enter your String: ");
+        String s=in.nextLine();
+        System.out.println();
+        System.out.print("Enter your Cipher key: ");
+        int key=in.nextInt();
+        String encr="";
+        for(int i=0;i<s.length();i++)
+        {
+            encr = s.substring(key);
+            encr = encr + s.substring(0, key);
+        }
+        System.out.println("Your encoded String is:  " +encr);
+    }
+}
