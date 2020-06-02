@@ -1,0 +1,87 @@
+import java.util.*;
+import java.io.*;
+public class Main
+{ 
+	static class Node
+	{
+		String data;
+		boolean visited;
+		List<Node> neighbours;
+ 
+		Node(String data)
+		{
+			this.data=data;
+			this.neighbours=new ArrayList<>();
+ 
+		}
+		public void addneighbours(Node neighbourNode)
+		{
+			this.neighbours.add(neighbourNode);
+		}
+		public List<Node> getNeighbours() {
+			return neighbours;
+		}
+		public void setNeighbours(List<Node> neighbours)
+		{
+			this.neighbours = neighbours;
+		}
+	}
+	
+	// Iterative DFS using stack
+	
+	public  void DFS(Node node)
+	{
+		Stack<Node> stack=new  Stack<Node>();
+		stack.add(node);
+		while (!stack.isEmpty())
+		{
+			Node element=stack.pop();
+			if(!element.visited)
+			{
+				System.out.print(element.data + " ");
+				element.visited=true;
+			}
+			
+			List<Node> neighbours=element.getNeighbours();
+			for (int i = 0; i < neighbours.size(); i++) 
+			{
+				Node n=neighbours.get(i);
+				if(n!=null && !n.visited)
+				{
+					stack.add(n);
+				}
+			}
+		}
+	}
+ 
+	public static void main(String arg[])
+	{
+ 
+		Node nodeD =new Node("D");
+		Node nodeC =new Node("C");
+		Node nodeE =new Node("E");
+		Node nodeF =new Node("F");
+		Node nodeB =new Node("B");
+		Node nodeG =new Node("G");
+		Node nodeH =new Node("H");
+		Node nodeA =new Node("A");
+ 
+		nodeD.addneighbours(nodeC);
+		nodeD.addneighbours(nodeE);
+		nodeD.addneighbours(nodeF);
+		nodeF.addneighbours(nodeC);
+		nodeE.addneighbours(nodeG);
+		nodeG.addneighbours(nodeD);
+		nodeG.addneighbours(nodeH);
+		nodeA.addneighbours(nodeB);
+		nodeH.addneighbours(nodeB);
+		
+ 
+		Main obj = new Main();
+ 
+		System.out.println("DFS sequence for graph - start with node D : ");
+		obj.DFS(nodeD);  // start with node D
+ 
+		System.out.println();
+	}
+}
