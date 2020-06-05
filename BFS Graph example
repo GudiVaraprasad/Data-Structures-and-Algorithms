@@ -1,0 +1,86 @@
+import java.util.*;
+import java.io.*;
+public class Main
+{ 
+ 
+	private Queue<Node> queue;
+	static ArrayList<Node> nodes=new ArrayList<Node>();
+	static class Node
+	{
+		String data;
+		boolean visited;
+		List<Node> neighbours;
+ 
+		Node(String data)
+		{
+			this.data=data;
+			this.neighbours=new ArrayList<>();
+ 
+		}
+		public void addneighbours(Node neighbourNode)
+		{
+			this.neighbours.add(neighbourNode);
+		}
+		public List<Node> getNeighbours() {
+			return neighbours;
+		}
+		public void setNeighbours(List<Node> neighbours) {
+			this.neighbours = neighbours;
+		}
+	}
+ 
+	public Main()
+	{
+		queue = new LinkedList<Node>();
+	}
+ 
+	public void bfs(Node node)
+	{
+		queue.add(node);
+		node.visited=true;
+		while (!queue.isEmpty())
+		{
+ 
+			Node element=queue.remove();
+			System.out.print(element.data + " ");
+			List<Node> neighbours=element.getNeighbours();
+			for (int i = 0; i < neighbours.size(); i++) {
+				Node n=neighbours.get(i);
+				if(n!=null && !n.visited)
+				{
+					queue.add(n);
+					n.visited=true;
+ 
+				}
+			}
+ 
+		}
+	}
+ 
+	public static void main(String arg[])
+	{
+ 
+		Node nodeD =new Node("D");
+		Node nodeC =new Node("C");
+		Node nodeE =new Node("E");
+		Node nodeF =new Node("F");
+		Node nodeB =new Node("B");
+		Node nodeG =new Node("G");
+		Node nodeH =new Node("H");
+		Node nodeA =new Node("A");
+ 
+		nodeD.addneighbours(nodeC);
+		nodeD.addneighbours(nodeE);
+		nodeD.addneighbours(nodeF);
+		nodeF.addneighbours(nodeC);
+		nodeE.addneighbours(nodeG);
+		nodeG.addneighbours(nodeD);
+		nodeG.addneighbours(nodeH);
+		nodeA.addneighbours(nodeB);
+		nodeH.addneighbours(nodeB);
+		System.out.println("The BFS sequence starting with node A : ");
+		Main obj = new Main();
+		obj.bfs(nodeA);
+ 
+	}
+}
