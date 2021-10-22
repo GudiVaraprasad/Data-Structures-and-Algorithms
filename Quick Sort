@@ -1,70 +1,61 @@
 import java.util.*;
-public class Main
+
+public class QuickSort
 {
-     
-    public static void main(String args[])
+    public void quickSort(int[] array, int start, int end)
     {
-        System.out.print("Enter the size of array: ");
-        Scanner in=new Scanner(System.in);
-        int n=in.nextInt();
-        int[] a=new int[n];
-        
-        System.out.println("Enter the array elements: ");
-        for(int i=0;i<n;i++)
+        if(start<end)
         {
-            a[i]=in.nextInt();
-        }
-        
-        quickSort(a,0,n);
-        
-        System.out.println("Ascending order - Quick Sort: ");
-        for(int i=0;i<n;i++)
-        {
-            System.out.println("" +a[i]);
+            int j = partition(array, start, end);
+            quickSort(array, start, j-1);
+            quickSort(array, j+1, end);
         }
     }
 
-    public static void quickSort(int a[],int l,int h)
+    public int partition(int[] array, int start, int end)
     {
-        
-        if(l<h)
+        int pivot = array[end];
+        int i = start-1;
+        for(int j=start;j<=end-1; j++)
         {
-        int mid=partition(a,l,h);
-        quickSort(a,l,mid);
-        quickSort(a,mid+1,h);
+            if(array[j]<pivot)
+            {
+                i++;
+                swap(array, i, j);
+            }
+        }
+        swap(array, i+1, end);
+        return (i+1);
+    }
+
+    public void swap(int[] array, int i, int j)
+    {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    public void display(int[] array)
+    {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]+" ");  
         }
     }
-    
-    public static int partition(int a[],int l,int h)
+    public static void main(String[] args)
     {
-        int   i=1,j=h-1,pivot;
-         pivot=a[l];
-           
-           while(i<j)
-           {
-                while(a[i]<pivot)
-                {
-                    i++;
-                }
-                while(a[j]>pivot)
-                {
-                    j--;
-                }
-              
-                if(i<j)
-                {
-                    int t=a[i];
-                    a[i]=a[j];
-                    a[j]=t;
-                }
-           }
-                if(j<i)
-                {
-                    int t=a[j];
-                    a[j]=a[l];
-                    a[l]=t;
-                }
-       
-         return j;
-}  
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter no. of Elements : ");
+        int size = in.nextInt();
+
+        int[] array = new int[size];
+        System.out.print("Enter elements of array : ");
+        for (int i = 0; i < array.length; i++)
+        {
+            array[i] = in.nextInt();
+        }
+        QuickSort qsObj = new QuickSort();
+        qsObj.quickSort(array, 0, size-1);
+        System.out.println("Quick Sorted Array : ");
+        qsObj.display(array);
+    }
 }
